@@ -956,6 +956,7 @@ void sampPatchDisableAnticheat(void)
 	static uint32_t anticheat = 1;
 	byte acpatch[] = { 0xFF, 0x05, 0x00, 0x00, 0x00, 0x00, 0xA1, 0x00, 0x00, 0x00, 0x00, 0xC3 };
 	*(uint32_t**)&acpatch[2] = *(uint32_t**)&acpatch[7] = &anticheat;
+	memset_safe((void*)(g_dwSAMP_Addr + 0x9D3EA), 0x90, 5); // nop removebuilding
 	memcpy_safe((void *)(g_dwSAMP_Addr + 0xC474B), acpatch, 12);
 }
 
